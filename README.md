@@ -1,6 +1,15 @@
 # Piqo — Pi Extension
 
-A chat-less way to collaborate with your favorite LLM models (online or offline), directly from your files, that is triggered on file save. It is a simple file-watcher extension for [pi](https://github.com/badlogic/pi-mono) that monitors directories for `@piqo` markers and uses the LLM to generate content inline.
+A chat-less way to collaborate with your favorite LLM models (remote or local), directly from your files and from any editor. It is a simple file-watcher extension for [pi](https://github.com/badlogic/pi-mono) triggered on-save, that monitors directories for `@piqo` markers and uses the LLM to generate content inline.
+Could be useful for keeping notes, writing tasks, researching topics, etc. 
+
+Example: 
+If you write the following (highlighted line):
+<img width="719" height="160" alt="Image" src="https://github.com/user-attachments/assets/30eda1ca-34ad-468a-baef-52db15169573" />
+
+You might get something like: 
+
+<img width="718" height="267" alt="Image" src="https://github.com/user-attachments/assets/8f0c9a27-c366-4022-8e27-e188a0e19188" />
 
 ## How It Works
 
