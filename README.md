@@ -2,7 +2,7 @@
 
 A chat-less way to collaborate with your favorite LLM models (remote or local), directly from your files and from any editor. The output is stored automatically into your files.
 
-It is a simple file-watcher extension for [pi](https://github.com/badlogic/pi-mono) triggered on-save, which monitors directories for `@piqo` markers and uses the LLM to generate content inline.
+It is a simple file-watcher extension for [pi](https://github.com/badlogic/pi-mono) triggered on-save, which continously monitors directories for `@piqo` markers and uses the LLM to generate content inline.
 
 Might be useful for keeping notes, writing tasks, researching topics, etc. 
 
