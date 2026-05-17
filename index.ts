@@ -30,6 +30,22 @@ interface PiqoMarker {
 	lineText: string;
 }
 
+const PIQO_PROMPT_SENTINEL = "[piqo-request]";
+
+function getMessageText(message: any): string {
+	const content = message?.content;
+	if (typeof content === "string") return content;
+	if (!Array.isArray(content)) return "";
+
+	return content
+		.map((part) => {
+			if (typeof part === "string") return part;
+			if (part?.type === "text" && typeof part.text === "string") return part.text;
+			return "";
+		})
+		.join("\n");
+}
+
 export default function (pi: ExtensionAPI) {
 	// Register the --dir flag
 	pi.registerFlag("dir", {
@@ -42,7 +58,24 @@ export default function (pi: ExtensionAPI) {
 	const debounceTimers = new Map<string, ReturnType<typeof setTimeout>>(); // per-file debounce
 	const watchers: fs.FSWatcher[] = [];
 
-	/**
+	// Isolate Piqo LLM calls from prior chat/session history.
+	// We keep messages from the current Piqo request onward so tool-call loops
+	// still work, but older user/assistant turns cannot affect the request.
+	pi.on("context", async (event) => {
+		let piqoStartIdx = -1;
+		for (let i = event.messages.length - 1; i >= 0; i--) {
+			const message = event.messages[i];
+			if (message.role === "user" && getMessageText(message).includes(PIQO_PROMPT_SENTINEL)) {
+				piqoStartIdx = i;
+				break;
+			}
+		}
+
+		if (piqoStartIdx === -1) return;
+		return { messages: event.messages.slice(piqoStartIdx) };
+	});
+
+   /**
 	 * Scan a file for @piqo markers. Markers are considered pending until the
 	 * agent removes the human prompt line/tag from the file.
 	 */
@@ -132,7 +165,8 @@ export default function (pi: ExtensionAPI) {
 			.join("\n");
 
 		const prompt = [
-			"A file has one or more @piqo markers requesting AI assistance. Read the file, understand each marker, and fulfill every request in one edit.",
+   `${PIQO_PROMPT_SENTINEL} A file has one or more @piqo markers requesting AI assistance. Read the
+ file, understand each marker, and fulfill every request in one edit.`,
 			"",
 			"MARKERS TO PROCESS:",
 			markerList,
