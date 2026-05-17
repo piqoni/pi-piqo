@@ -8,10 +8,10 @@
  * is needed.
  *
  * Usage:
- *   pi -e ./piqo_extension --dir /path/to/dir1,/path/to/dir2
+ *   pi -e ./piqo-extension --dir /path/to/dir1,/path/to/dir2
  *
  * In headless (print) mode:
- *   pi -e ./piqo_extension --dir /path/to/dir1 -p "Start piqo watcher"
+ *   pi -e ./piqo-extension --dir /path/to/dir1 -p "Start piqo watcher"
  *
  * Marker format:
  *   @piqo <instruction here>

@@ -12,14 +12,17 @@ A chat-less way to communicate with your favorite LLM models (online or offline)
 ## Usage
 
 ```bash
-# Watch a single directory
-pi -e ./piqo_extension --dir /path/to/your/project
+# Load it directly from github
+pi -e https://github.com/piqoni/piqo-extension --dir=/path/to/your/project
+
+# Or if you want to reference it locally, git clone the repo and reference it directly
+pi -e ./piqo-extension --dir /path/to/your/project
 
 # Watch multiple directories
-pi -e ./piqo_extension --dir /path/to/dir1,/path/to/dir2
+pi -e ./piqo-extension --dir /path/to/dir1,/path/to/dir2
 
 # Headless mode (no TUI)
-pi -e ./piqo_extension --dir /path/to/project -p "Start piqo watcher"
+pi -e ./piqo-extension --dir /path/to/project -p "Start piqo watcher"
 ```
 
 ## Marker Format
@@ -62,8 +65,6 @@ Becomes generated content with the @piqo prompt removed
 ## Behavior Details
 
 - **Debounce**: File changes are debounced at 500ms per file to avoid duplicate processing
-- **No double-processing**: Each file is tracked while its `@piqo` markers are being processed
-- **Multiple markers**: All `@piqo` markers in a file are processed together to avoid edit conflicts
 - **Initial scan**: On startup, piqo scans all watched directories for existing markers
 - **Ignored paths**: Hidden files/dirs, `node_modules`, `.git` are automatically skipped
 - **Text files only**: Only processes common text file extensions (.ts, .js, .py, .md, .txt, etc.)
@@ -73,5 +74,5 @@ Becomes generated content with the @piqo prompt removed
 Place this extension in `~/.pi/agent/extensions/piqo/` for global access, or reference it directly:
 
 ```bash
-pi -e /path/to/piqo_extension
+pi -e /path/to/piqo-extension
 ```
