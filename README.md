@@ -4,10 +4,10 @@ A chat-less way to collaborate with your favorite LLM models (remote or local), 
 Could be useful for keeping notes, writing tasks, researching topics, etc. 
 
 Example: 
-If you write the following (highlighted line):
+If you write the following (highlighted line) and save the file:
 <img width="719" height="160" alt="Image" src="https://github.com/user-attachments/assets/30eda1ca-34ad-468a-baef-52db15169573" />
 
-You might get something like: 
+You will get something like (using gpt-5.4-mini): 
 
 <img width="718" height="267" alt="Image" src="https://github.com/user-attachments/assets/8f0c9a27-c366-4022-8e27-e188a0e19188" />
 
