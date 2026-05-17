@@ -22,6 +22,7 @@ You will get something like (using gpt-5.4-mini):
 4. The LLM fulfills each prompt and removes the human prompt line/tag from the file
 
 ## Usage
+If you have [Pi](https://pi.dev/) installed, you are one command away from using it:
 
 ```bash
 # Load it directly from github
