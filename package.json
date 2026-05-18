@@ -1,6 +1,6 @@
 {
   "name": "pi-piqo",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Piqo - file watcher extension for pi that processes @piqo markers",
   "keywords": ["pi-package"],
   "pi": {
