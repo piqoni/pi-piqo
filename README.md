@@ -25,9 +25,12 @@ You will get something like (using gpt-5.4-mini):
 If you have [Pi](https://pi.dev/) installed, you are one command away from using it:
 
 ```bash
-# Load it directly from github
-pi -e https://github.com/piqoni/piqo-extension --dir=/path/to/your/project
+# Load it directly from npm (or alternatively github repo url)
+pi -e npm:pi-piqo --dir=/path/to/your/project
+```
 
+Other options: 
+```bash
 # Or if you want to reference it locally, git clone the repo and reference it directly
 pi -e ./piqo-extension --dir /path/to/your/project
 
@@ -84,8 +87,13 @@ Becomes generated content with the @piqo prompt removed
 
 ## Installation
 
-Place this extension in `~/.pi/agent/extensions/piqo/` for global access, or reference it directly:
+To install it for your Pi globally:
+```
+pi install npm:pi-piqo
+```
+
+But then to use it, simply run pi but with --dir option of the directory that you want to monitor. See usage section for more options. 
 
 ```bash
-pi -e /path/to/piqo-extension
+pi --dir=/path/of/your/project
 ```
