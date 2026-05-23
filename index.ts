@@ -37,7 +37,7 @@ const TEXT_FILE_EXTENSIONS = new Set([
 	".json", ".yaml", ".yml", ".toml", ".sh", ".bash", ".zsh", ".fish",
 	".sql", ".r", ".swift", ".kt", ".scala", ".lua", ".vim", ".el",
 	".clj", ".hs", ".ml", ".ex", ".exs", ".erl", ".dart", ".cs",
-	".php", ".pl", ".pm", ".svelte", ".vue", ".astro", ".mdx",
+	".php", ".pl", ".pm", ".svelte", ".vue", ".astro", ".mdx", ".markdown"
 ]);
 
 function isTextFile(filePath: string): boolean {
