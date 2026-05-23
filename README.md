@@ -25,21 +25,26 @@ You will get something like (using gpt-5.4-mini):
 If you have [Pi](https://pi.dev/) installed, you are one command away from using it:
 
 ```bash
-# Load it directly from npm (or alternatively github repo url)
+# Load it directly from npm (or alternatively a github repo url)
 pi -e npm:pi-piqo --dir=/path/to/your/project
 ```
 
 Other options: 
 ```bash
-# Or if you want to reference it locally, git clone the repo and reference it directly
-pi -e ./piqo-extension --dir /path/to/your/project
+# Or if you want to reference a local checkout of this repo
+pi -e . --dir=/path/to/your/project
 
 # Watch multiple directories
-pi -e ./piqo-extension --dir /path/to/dir1,/path/to/dir2
+pi -e . --dir=/path/to/dir1,/path/to/dir2
 
 # Headless mode (no TUI)
-pi -e ./piqo-extension --dir /path/to/project -p "Start piqo watcher"
+pi -e . --dir=/path/to/project -p "Start piqo watcher"
 ```
+
+Use exactly one loading mode at a time:
+
+- If you use `pi -e ...`, do not also rely on a globally installed `pi-piqo`.
+- If you installed `pi-piqo` globally with `pi install npm:pi-piqo`, run `pi --dir=...` without `-e`.
 
 ## Marker Format
 
@@ -92,7 +97,7 @@ To install it for your Pi globally:
 pi install npm:pi-piqo
 ```
 
-But then to use it, simply run pi but with --dir option of the directory that you want to monitor. See usage section for more options. 
+After that, run Pi with just `--dir` for the directory you want to monitor:
 
 ```bash
 pi --dir=/path/of/your/project
