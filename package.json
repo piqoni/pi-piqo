@@ -2,8 +2,11 @@
   "name": "pi-piqo",
   "version": "0.0.4",
   "description": "Piqo - a pi extension which allows user to interact with llm agents directly from files, without the need to use any chat UI.",
-  "keywords": ["pi-package"],
+  "keywords": ["pi-package", "pi", "coding-agent", "pi-coding-agent"],
+  "license": "MIT",
+  "repository": "https://github.com/piqoni/pi-piqo",
   "pi": {
-    "extensions": ["./index.ts"]
+    "extensions": ["./index.ts"],
+    "image": "https://github.com/piqoni/pi-piqo/blob/main/test_dir/demo.png"
   }
 }
