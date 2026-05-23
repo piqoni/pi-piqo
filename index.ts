@@ -31,6 +31,18 @@ interface PiqoMarker {
 }
 
 const PIQO_PROMPT_SENTINEL = "[piqo-request]";
+const TEXT_FILE_EXTENSIONS = new Set([
+	".txt", ".md", ".js", ".ts", ".jsx", ".tsx", ".py", ".rb", ".rs",
+	".go", ".java", ".c", ".cpp", ".h", ".hpp", ".css", ".html", ".xml",
+	".json", ".yaml", ".yml", ".toml", ".sh", ".bash", ".zsh", ".fish",
+	".sql", ".r", ".swift", ".kt", ".scala", ".lua", ".vim", ".el",
+	".clj", ".hs", ".ml", ".ex", ".exs", ".erl", ".dart", ".cs",
+	".php", ".pl", ".pm", ".svelte", ".vue", ".astro", ".mdx",
+]);
+
+function isTextFile(filePath: string): boolean {
+	return TEXT_FILE_EXTENSIONS.has(path.extname(filePath).toLowerCase());
+}
 
 function getMessageText(message: any): string {
 	const content = message?.content;
@@ -241,17 +253,7 @@ export default function (pi: ExtensionAPI) {
 					return;
 				}
 
-				// Only process text-like files
-				const ext = path.extname(filename).toLowerCase();
-				const textExts = new Set([
-					".txt", ".md", ".js", ".ts", ".jsx", ".tsx", ".py", ".rb", ".rs",
-					".go", ".java", ".c", ".cpp", ".h", ".hpp", ".css", ".html", ".xml",
-					".json", ".yaml", ".yml", ".toml", ".sh", ".bash", ".zsh", ".fish",
-					".sql", ".r", ".swift", ".kt", ".scala", ".lua", ".vim", ".el",
-					".clj", ".hs", ".ml", ".ex", ".exs", ".erl", ".dart", ".cs",
-					".php", ".pl", ".pm", ".svelte", ".vue", ".astro", ".mdx",
-				]);
-				if (!textExts.has(ext)) return;
+				if (!isTextFile(filename)) return;
 
 				// Check file exists and is a regular file
 				try {
@@ -337,16 +339,7 @@ export default function (pi: ExtensionAPI) {
 			if (entry.isDirectory()) {
 				scanDirectoryRecursive(fullPath);
 			} else if (entry.isFile()) {
-				const ext = path.extname(entry.name).toLowerCase();
-				const textExts = new Set([
-					".txt", ".md", ".js", ".ts", ".jsx", ".tsx", ".py", ".rb", ".rs",
-					".go", ".java", ".c", ".cpp", ".h", ".hpp", ".css", ".html", ".xml",
-					".json", ".yaml", ".yml", ".toml", ".sh", ".bash", ".zsh", ".fish",
-					".sql", ".r", ".swift", ".kt", ".scala", ".lua", ".vim", ".el",
-					".clj", ".hs", ".ml", ".ex", ".exs", ".erl", ".dart", ".cs",
-					".php", ".pl", ".pm", ".svelte", ".vue", ".astro", ".mdx",
-				]);
-				if (!textExts.has(ext)) continue;
+				if (!isTextFile(entry.name)) continue;
 
 				// Quick check if file contains @piqo
 				try {
